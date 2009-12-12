@@ -1,0 +1,21 @@
+<% form_for "post", @post, :url => :posts, :html => { :multipart => true } do |f| %>
+    <%= f.error_messages %>
+
+    <%= f.hidden_field :type %>
+
+    <p>
+      <%= f.label :title %><br/>
+      <%= f.text_field :title %>
+    </p>
+
+    <p>
+      <%= f.label :author %><br/>
+      <%= f.text_field :author %>
+    </p>
+
+    <!-- use the post type to determine the correct "edit" partial to render ->
+    <%= render :partial => "edit" + f.object.type.downcase, :locals=>{:f=>f} %>
+
+  <p><%= f.submit "Submit" %></p>
+  
+<% end %>

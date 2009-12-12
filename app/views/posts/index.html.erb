@@ -1,0 +1,18 @@
+<% title "Posts" %>
+
+
+<% for post in @posts %>
+    <div class="postbox">
+      <h2><%= post.title %></h2>
+
+      <p>created by <b> <%= h post.author %> </b> on <b><%= post.created_at %> </b></p>
+
+      <!-- use the post type to determine the correct partial to render ->
+      <%= render :partial => post.type.downcase, :locals=>{:post=>post} %>
+
+    </div>
+<% end %>
+
+<p><%= link_to "New URL Post", new_post_path(:type=>:LinkPost) %> &nbsp | &nbsp
+  <%= link_to "New Image Post", new_post_path(:type=>:ImagePost) %> &nbsp | &nbsp
+  <%= link_to "New Literal Post", new_post_path(:type=>:LiteralPost) %></p>

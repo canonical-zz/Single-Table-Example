@@ -1,0 +1,10 @@
+
+<h1>  <%=h @post.title %></h1>
+  <p>created by <b> <%=h @post.author %> </b> on <b><%= @post.created_at %> </b></p>
+<%= render :partial => @post.type.downcase, :locals=>{:post=>@post} %>
+
+<p>
+  <%= link_to "Edit", edit_post_path(@post) %> |
+  <%= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", posts_path %>
+</p>
